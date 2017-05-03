@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>    
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+</head>
+<body>
+
+<table border='1' class="tableID">
+  <tr>
+    <th>a</th>
+    <th>b</th>
+    <th>c</th>
+    <th>d</th>
+    <th>e</th>
+    <th>f</th>
+    <th>g</th>
+    <th>總計</th>
+  </tr>
+  <tr>
+    <td>21</td>
+    <td>22</td>
+    <td>23</td>
+    <td>24</td>
+    <td>25</td>
+    <td>26</td>
+    <td>27</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>3.3</td>
+    <td>3.3</td>
+    <td>3.3</td>
+    <td>3.3</td>
+    <td>3.3</td>
+    <td>3.3</td>
+    <td>3.3</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>4.4</td>
+    <td>4.4</td>
+    <td>4.4</td>
+    <td>4.4</td>
+    <td>4.4</td>
+    <td>4.4</td>
+    <td>4.4</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>5.5</td>
+    <td>5.5</td>
+    <td>5.5</td>
+    <td>5.5</td>
+    <td>5.5</td>
+    <td>5.5</td>
+    <td>5.5</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>6.6</td>
+    <td>6.6</td>
+    <td>6.6</td>
+    <td>6.6</td>
+    <td>6.6</td>
+    <td>6.6</td>
+    <td>6.6</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>6.6</td>
+    <td>6.6</td>
+    <td>6.6</td>
+    <td>6.6</td>
+    <td>6.6</td>
+    <td>6.6</td>
+    <td>6.6</td>
+    <td></td>
+  </tr>  
+</table>
+
+
+</body>
+
+
+<script type="text/javascript">
+    $(function(){
+        // console.log($(".tableID tbody tr:nth-child(2)").html());
+        // console.log($(".tableID tbody tr").slice(1).length);
+
+        // 計算加總
+        $(".tableID tbody tr").slice(1).each( function() {
+            var tds = $(this).find('td');
+            var sum = 0;
+            tds.each( function() {
+                var value = $(this).text();
+                if( !isNaN(value) && value.length !==0 ){
+                    sum += parseFloat(value);
+                }
+            });
+            // alert(sum);
+
+            /**
+             * 參考
+             * http://stackoverflow.com/questions/22536448/jquery-sum-rows-adding-all-cells
+             */
+            $("td:last-child", this).text(sum);
+
+            $("tbody th").css("background", "yellow");
+        });
+
+
+
+
+    });
+
+
+
+    function alertEach() {
+        $(".tableID").find("tbody").find("tr").eq(1).find("td").each(function(){
+            alert($(this).text());
+        });
+    }
+
+
+
+
+
+
+
+
+
+</script>
+</html>
