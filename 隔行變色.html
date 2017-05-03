@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+    <script>
+    $(function(){
+        $('div:even').addClass('even');
+        $('div:odd').addClass('odd');
+
+        // 隔行變色, solution1
+        // $('div').mouseover(function(){
+        //     $(this).addClass('active');
+        // });
+        // $('div').mouseout(function(){
+        //     $(this).removeClass('active');
+        // });
+
+        // 隔行變色, solution2
+        // hover(handlerIn, handlerOut)
+        $('div').hover(function(){
+            $(this).addClass('active');
+            console.log('in');
+        }, function(){
+            $(this).removeClass('active');
+        });
+
+    });
+    </script>
+    <style>
+        div {
+            padding: 20px;
+            margin: 10px;
+            border: 1px solid #000;
+
+        }
+        .even {
+            background: #333;
+        }
+        .odd {
+            background: #999;
+        }
+        .active {
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>
