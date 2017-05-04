@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>    
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+</head>
+<body>
+
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+
+<input type="button" value="全選">
+<input type="button" value="全不選">
+<input type="button" value="反選">
+
+
+</body>
+<script type="text/javascript">
+// jquery solution
+$(function(){
+    $('li').each(function() {
+        $(this).bind('click', function(){
+            console.log($(this).text());
+        });
+    });
+    $('input[type=button]').each(function() {
+        $(this).bind('click', function(){
+            console.log($(this).val());
+        });
+    });
+});
+
+// pure javascript solution
+// window.onload = function() {
+//     var lis = document.getElementsByTagName('li');
+//     for (var i = 0; i < lis.length; i++) {
+//         lis[i].onclick = (function(i){
+//             return function(){
+//                 console.log(lis[i].innerHTML);
+//             }
+//         }(i));
+//     }
+// }
+
+</script>
+</html>
