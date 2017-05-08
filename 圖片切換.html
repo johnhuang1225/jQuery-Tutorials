@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圖片切換(Slide)</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>    
+    <style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    ul li {
+        list-style-type: none;
+    }
+    a {
+        text-decoration: none;
+
+    }
+    img {
+        border: none;
+        display: none;
+    }
+    .container {
+        width: 700px;
+        margin: 20px auto;
+        border: 1px solid red;
+        position: relative;
+    }
+    .slide {
+        width: 960px;
+        height: 500px;
+    }
+    .icon {
+        position: absolute;
+        right: 50px;
+        bottom: 10px;
+    }
+    .icon li {
+        float: left;
+        margin-left: 20px;
+        background: green;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+    .icon li.active {
+        background: yellow;
+
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slide">
+            <img src="./img/1.jpg" alt="" width="700" height="450" style="display:block">
+            <img src="./img/2.jpg" alt="" width="700" height="450">
+            <img src="./img/3.jpg" alt="" width="700" height="450">
+            <img src="./img/4.jpg" alt="" width="700" height="450">
+        </div>
+        <div class="icon">
+            <ul>
+                <li class='active'><a href="javascript:;"></a>1</li>
+                <li><a href="javascript:;"></a>2</li>
+                <li><a href="javascript:;"></a>3</li>
+                <li><a href="javascript:;"></a>4</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript">
+$(function() {
+    var timer = null;
+    var iIndex = 0;
+    // 每一秒將 global 的 index+1
+    timer = setInterval(function() {
+        autoLoop();
+    }, 1000);
+
+    // 綁定滑鼠移入與移除效果, 移入:清除定時器, 移出:繼續定時器
+    $('.container').mouseover(function() {
+        clearInterval(timer);
+    }).mouseout(function() {
+        timer = setInterval(function() {
+            autoLoop();
+        }, 1000);
+    });
+
+    slide();
+    function slide() {
+        $('.icon li').click(function() {
+            var index = $(this).index();
+            $('.slide img').eq(index).show().siblings('img').hide();
+            $('.icon li').eq(index).addClass('active').siblings('li').removeClass('active');
+            iIndex = index; // 點擊後，需將點擊的index給賦值給全局的iIndex
+        });
+    }
+
+    function toggleSlide() {
+        $('.slide img').eq(iIndex).show().siblings('img').hide();
+        $('.icon li').eq(iIndex).addClass('active').siblings('li').removeClass('active');
+    }
+
+    function autoLoop() {
+        iIndex ++;
+        if (iIndex==$('.slide img').length) {
+            iIndex = 0;
+        }
+        toggleSlide();
+    }
+});
+</script>
+</html>
