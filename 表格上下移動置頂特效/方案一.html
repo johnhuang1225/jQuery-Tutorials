@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 800px;
+            margin: 100px auto;
+        }
+        th, td {
+            border-bottom: solid 2px #ccc;
+            padding: 10px;
+        }
+        tr.active {
+            color: #ff8800;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>阿土伯贊助1500萬選總統 郭董神回</td>
+        <td>2017-06-22</td>
+        <td>
+            <a href="javascript:;" class="up">上移</a>
+            <a href="javascript:;" class="down">下移</a>
+            <a href="javascript:;" class="top">置頂</a>
+        </td>
+    </tr>
+    <tr>
+        <td>全聯小編一個月沒發文 原因曝光了</td>
+        <td>2017-06-22</td>
+        <td>
+            <a href="javascript:;" class="up">上移</a>
+            <a href="javascript:;" class="down">下移</a>
+            <a href="javascript:;" class="top">置頂</a>
+        </td>
+    </tr>
+    <tr>
+        <td>驚！「請將衛生局丟馬桶」公文瘋傳</td>
+        <td>2017-06-22</td>
+        <td>
+            <a href="javascript:;" class="up">上移</a>
+            <a href="javascript:;" class="down">下移</a>
+            <a href="javascript:;" class="top">置頂</a>
+        </td>
+    </tr>
+    <tr>
+        <td>日本感冒藥原料 爆混入中國製廉價成分</td>
+        <td>2017-06-22</td>
+        <td>
+            <a href="javascript:;" class="up">上移</a>
+            <a href="javascript:;" class="down">下移</a>
+            <a href="javascript:;" class="top">置頂</a>
+        </td>
+    </tr>
+    <tr>
+        <td>高物價時代來臨 實質薪資倒退17年</td>
+        <td>2017-06-22</td>
+        <td>
+            <a href="javascript:;" class="up">上移</a>
+            <a href="javascript:;" class="down">下移</a>
+            <a href="javascript:;" class="top">置頂</a>
+        </td>
+    </tr>
+</table>
+
+<script src="../jquery-3.1.1.js"></script>
+<script>
+    $(function(){
+        // 下移
+        $('.up').click(function(){
+            $tr = $(this).parents('tr');
+            if ($tr.index() != 0) {
+                $tr.fadeOut().fadeIn();
+                $tr.prev().before($tr);
+                $tr.addClass('active').siblings('tr').removeClass('active');
+            } else {
+                alert('已經置頂了!');
+            }
+        });
+
+        // 上移
+        var size = $('table tr').length;
+        $('.down').click(function(){
+            $tr = $(this).parents('tr');
+            if ($tr.index() != (size-1)) {
+                $tr.fadeOut().fadeIn();
+                $tr.next().after($tr);
+                $tr.addClass('active').siblings('tr').removeClass('active');
+            } else {
+                alert('已經到底了!');
+            }
+        });
+
+        // 置頂
+        $('.top').click(function(){
+            $tr = $(this).parents('tr');
+            $tr.fadeOut().fadeIn();
+            $tr.addClass('active').siblings('tr').removeClass('active');
+            $('table').prepend($tr);
+        });
+
+    });
+
+</script>
+</body>
+</html>

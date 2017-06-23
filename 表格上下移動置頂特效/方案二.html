@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 800px;
+            margin: 100px auto;
+        }
+        th, td {
+            border-bottom: solid 2px #ccc;
+            padding: 10px;
+        }
+        tr.active {
+            color: #ff8800;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>1. 阿土伯贊助1500萬選總統 郭董神回</td>
+        <td>2017-06-22</td>
+        <td>
+            <a href="javascript:;" class="up">上移</a>
+            <a href="javascript:;" class="down">下移</a>
+            <a href="javascript:;" class="top">置頂</a>
+        </td>
+    </tr>
+    <tr>
+        <td>2. 全聯小編一個月沒發文 原因曝光了</td>
+        <td>2017-06-22</td>
+        <td>
+            <a href="javascript:;" class="up">上移</a>
+            <a href="javascript:;" class="down">下移</a>
+            <a href="javascript:;" class="top">置頂</a>
+        </td>
+    </tr>
+    <tr>
+        <td>3. 驚！「請將衛生局丟馬桶」公文瘋傳</td>
+        <td>2017-06-22</td>
+        <td>
+            <a href="javascript:;" class="up">上移</a>
+            <a href="javascript:;" class="down">下移</a>
+            <a href="javascript:;" class="top">置頂</a>
+        </td>
+    </tr>
+    <tr>
+        <td>4. 日本感冒藥原料 爆混入中國製廉價成分</td>
+        <td>2017-06-22</td>
+        <td>
+            <a href="javascript:;" class="up">上移</a>
+            <a href="javascript:;" class="down">下移</a>
+            <a href="javascript:;" class="top">置頂</a>
+        </td>
+    </tr>
+    <tr>
+        <td>5. 高物價時代來臨 實質薪資倒退17年</td>
+        <td>2017-06-22</td>
+        <td>
+            <a href="javascript:;" class="up">上移</a>
+            <a href="javascript:;" class="down">下移</a>
+            <a href="javascript:;" class="top">置頂</a>
+        </td>
+    </tr>
+</table>
+
+<script src="../jquery-3.1.1.js"></script>
+<script>
+    $(function(){
+        function initNodeList() {
+            var arr = [];
+            $('table tr').each(function(){
+                arr.push($(this).html());
+            });
+            return arr;
+        }
+
+        function initTable(node) {
+            $('table').html('');
+            for (var key in node) {
+                $('table').append('<tr>' + node[key] + '</tr>');
+            }
+        }
+
+        var node = initNodeList();
+
+        // 上移
+        $(document).on('click', '.up', function(){
+            var $tr = $(this).parents('tr');
+            var currentIndex = $tr.index();
+            if (currentIndex !=0) {
+                var temp = node[currentIndex];
+                node[currentIndex] = node[currentIndex-1];
+                node[currentIndex-1] = temp;
+                initTable(node);
+                node = initNodeList();
+            }
+        });
+
+        // 下移 TODO
+
+
+        // 置頂
+        $(document).on('click', '.top', function(){
+            var $tr = $(this).parents('tr');
+            var currentIndex = $tr.index();
+            var temp = node[currentIndex];
+            node.splice(currentIndex, 1); // 刪除指定 index 的元素
+            node.unshift(temp);
+            initTable(node);
+            node = initNodeList();
+        });
+
+
+
+
+
+
+
+
+    });
+
+</script>
+</body>
+</html>

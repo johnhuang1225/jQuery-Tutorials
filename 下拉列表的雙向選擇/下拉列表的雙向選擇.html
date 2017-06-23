@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .left, .center, .right {
+            float: left;
+            margin-left: 20px;
+        }
+        .center span {
+            display: block;
+            margin: 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        select {
+            width: 100px;
+            height: 100px;
+        }
+
+        .btn {
+            padding-left: 50px;
+        }
+        .btn:before, .btn:after {
+            clear: both;
+            display: table;
+            content: " ";
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="left">
+    <select name="" id="left_select" multiple>
+        <option value="5">黃嬿儒 - 5</option>
+        <option value="7">黃耀霆 - 7</option>
+        <option value="35">莊雅惠 - 35</option>
+        <option value="42">黃獻葦 - 42</option>
+    </select>
+</div>
+
+<div class="center">
+    <span class="toRight"> > </span>
+    <span class="toLeft"> < </span>
+</div>
+
+<div class="right">
+    <select name="" id="right_select" multiple>
+
+    </select>
+</div>
+
+<div class="btn">
+    <input type="button" value="獲取選擇的值" id="btn"/>
+</div>
+
+
+<script src="../jquery-3.1.1.js"></script>
+<script>
+    $(function(){
+
+        $('.toRight').click(function(){
+            $('#left_select option:selected').each(function(){
+//                $(this).appendTo('#right_select');
+                $('#right_select').append($(this));
+            });
+        });
+
+        $('.toLeft').click(function(){
+            $('#right_select option:selected').each(function(){
+                $(this).appendTo('#left_select');
+            });
+        });
+
+        $('#btn').click(function(){
+            var arr = [];
+            $('#right_select option:selected').each(function(){
+                arr.push($(this).val());
+            });
+            if (arr.length > 0) {
+                alert(arr);
+            } else {
+                alert('No selected');
+            }
+
+        });
+
+
+    });
+</script>
+</body>
+</html>
