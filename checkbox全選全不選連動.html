@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <table class="table-striped">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" name="check_all" id="check_all"></th>
+                    <th>Name</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tr>
+                <td align="center"><input type="checkbox" name="selected_id[]" class="checkbox" value="1"></td>
+                <td>john</td>
+                <td>johnhuang</td>
+            </tr>
+            <tr>
+                <td align="center"><input type="checkbox" name="selected_id[]" class="checkbox" value="2"></td>
+                <td>jessica</td>
+                <td>jessicachuang</td>
+            </tr>
+            <tr>
+                <td align="center"><input type="checkbox" name="selected_id[]" class="checkbox" value="3"></td>
+                <td>henry</td>
+                <td>henryhuang</td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script src='jquery-3.1.1.js'></script>
+<script>
+    $(function() {
+        $('#check_all').on('click', function() {
+            if (this.checked) {
+                $('.checkbox').each(function() {
+                    this.checked = true;
+                });
+            } else {
+                $('.checkbox').each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+
+        $('.checkbox').on('click', function() {
+            if ($('.checkbox:checked').length == $('.checkbox').length) {
+                $('#check_all').prop('checked', true);
+            } else {
+                $('#check_all').prop('checked', false);
+            }
+        });
+    });
+</script>
+</html>
